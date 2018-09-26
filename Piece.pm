@@ -680,7 +680,7 @@ sub subtract {
     }
 
     if (blessed($rhs) && $rhs->isa('Time::Piece')) {
-        return Time::Seconds->new($time->epoch - $rhs->epoch);
+        return ($time->epoch + $time->tzoffset) - ($rhs->epoch + $rhs->tzoffset);
     }
     else {
         # rhs is seconds.
